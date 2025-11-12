@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analyseur de Sons Marins</title>
+    <!-- Utilisation de Tailwind CSS  -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Police Google Fonts pour une meilleure typographie -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    
+</head>
+<body class="bg-gray-100 text-gray-800 flex items-center justify-center min-h-screen p-4">
+
+    <div class="w-full max-w-2xl mx-auto bg-white rounded-xl shadow-lg p-8 md:p-12 text-center">
+        
+        <header class="mb-8">
+            <h1 class="text-3xl md:text-4xl font-bold text-blue-600">Reconnaissance de Sons Marins 🐋</h1>
+            <p class="mt-3 text-gray-600">Téléversez un fichier audio .wav pour identifier l'animal marin.</p>
+        </header>
+
+        <main>
+            <!-- Formulaire de téléversement -->
+            <form action="/" method="post" enctype="multipart/form-data" class="space-y-6">
+                <div>
+                    <!-- Label stylisé qui agit comme un bouton -->
+                    <label for="file-upload-button" class="file-input-label">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                        </svg>
+                        <span>Choisir un fichier...</span>
+                    </label>
+                    <input id="file-upload-button" name="file" type="file" accept=".wav" required>
+                    <p id="file-name" class="mt-3 text-sm text-gray-500">Aucun fichier sélectionné</p>
+                </div>
+                
+                <button type="submit" class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-4 rounded-lg transition duration-300 ease-in-out transform hover:scale-105">
+                    Identifier l'animal
+                </button>
+            </form>
+
+            <!-- Section pour afficher le résultat -->
+            {% if prediction %}
+            <div id="result" class="mt-10 p-6 bg-blue-50 border-2 border-blue-200 rounded-lg animate-fade-in">
+                <h2 class="text-2xl font-semibold text-gray-800">Résultat de l'analyse</h2>
+                <p class="mt-2 text-gray-600">Fichier analysé : <span class="font-medium">{{ filename }}</span></p> <br>
+                <p class="mt-4 text-4xl font-bold text-blue-700"> {{ prediction }} </p>
+            </div>
+            {% endif %}
+        </main>
+        
+        <footer class="mt-12 text-xs text-gray-400">
+            <p>Développé avec Flask & un modèle d'IA.</p>
+        </footer>
+
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}">
+        
+    </script>
+
+</body>
+</html>

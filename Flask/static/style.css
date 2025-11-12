@@ -1,0 +1,34 @@
+/* Style  */
+body {
+    font-family: 'Inter', sans-serif;
+}
+.file-input-label {
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    background-color: #3b82f6; 
+    color: white;
+    font-weight: 500;
+    transition: background-color 0.2s;
+}
+.file-input-label:hover {
+    background-color: #2563eb; 
+}
+/* Cache le bouton de fichier par défaut */
+#file-upload-button {
+    display: none;
+}
+
+/* Animation pour le résultat */
+.animate-fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
